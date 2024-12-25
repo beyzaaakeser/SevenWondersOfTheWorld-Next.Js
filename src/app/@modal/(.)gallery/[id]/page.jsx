@@ -1,10 +1,13 @@
 'use client';
-import { data } from '@/app/constants';
+import { data } from '../../../constants';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import {useParams, useRouter} from 'next/navigation';
+import {IoMdClose} from "react-icons/io";
+import {MdOpenInNewOff} from "react-icons/md";
 
-const DetailPreview = ({ params }) => {
-  const { id } = params;
+const DetailPreview =  () => {
+  const params = useParams();
+  const id = params?.id;
   const item = data.find((i) => i.id === id);
   const router = useRouter();
 
@@ -20,20 +23,20 @@ const DetailPreview = ({ params }) => {
         <div className="text-lg flex justify-between my-5 gap-5">
           <button
             onClick={close}
-            className="size-10 border border-black rounded-lg transition hover:bg-black/40"
+            className="size-10 flex items-center justify-center  rounded-lg transition hover:bg-gray-400"
           >
-            X
+            <IoMdClose size={30} />
           </button>
           <button
             onClick={refresh}
-            className="size-10 border border-black rounded-lg transition hover:bg-black/40"
+            className="size-10  flex items-center justify-center  rounded-lg   transition hover:bg-gray-400"
           >
-            G
+            <MdOpenInNewOff size={30} />
           </button>
         </div>
 
         <Image
-          src={item.src}
+          src={item.m_src}
           alt={item.name}
           className="w-full max-h-[300px] object-cover aspect-square rounded-md"
         />
